@@ -116,9 +116,11 @@
             'password': pswdInput.value
         };
         ajax('http://localhost:3000/check', 'POST', JSON.stringify(data)).then(function(response) {
-            console.log("Success!", response);
+            console.log("POST call to /check successful.", response);
+            alert(response);
         }, function(error) {
-            console.log("Failed!", error);
+            console.log("POST call to /check failed!", error);
+            alert("Failed to log in! :(");
         });
     }
 
