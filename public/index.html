@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="./stylesheets/indexStyle.css">
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Login Form</h1>
+    <form>
+        <label for="usrname">User Name</label>
+        <input type="text" id="usrname" name="usrname" class="input-field" required>
+
+        <label for="pswd">Password</label>
+        <input type="password" id="pswd" name="pswd" title="Must contain at least one uppercase letter, one lowercase letter, a number & 8 or more characters." class="input-field" required>
+
+        <button id="submitForm" type="submit" value="Login" class="submit-form">Login</button>
+    </form>
+</div>
+
+<div id="message" class="container">
+    <h3>Password must contain the following:</h3>
+    <p id="upLetter" class="invalid">An uppercase letter</p>
+    <p id="lowLetter" class="invalid">A lowercase letter</p>
+    <p id="number" class="invalid">A number</p>
+    <p id="length" class="invalid">At least 8 characters</p>
+</div>
+
+</body>
+
+<script src="./javascripts/indexScript.js"></script>
+
+</html>

@@ -1,0 +1,34 @@
+.input-field, .submit-form {
+    width: 100%;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    margin-top: 7px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.submit-form {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#message {
+    display: none;
+    position: relative;
+    margin-top: 10px;
+}
+
+.container {
+    background-color: #f0f0f0;
+    padding: 18px;
+    border-radius: 5px;
+}
+
+.valid {
+    color: green;
+}
+
+.invalid {
+    color: red;
+}
