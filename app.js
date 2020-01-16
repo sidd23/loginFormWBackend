@@ -13,6 +13,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routing
-app.use('/', require(path.join(__dirname, './routes/index')));
+app.use('/', require(path.join(__dirname, './routes/routes')));
 
 app.listen(port, () => console.log(`Server (app) listening on port ${port}!`))
