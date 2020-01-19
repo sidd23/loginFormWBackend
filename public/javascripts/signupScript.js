@@ -1,6 +1,8 @@
 (function () {
     let abstractTag;
 
+    let firstName = document.getElementById("firstName");
+    let familyName = document.getElementById("familyName");
     let username = document.getElementById("usrname");
     let pswdInput = document.getElementById("pswd");
     let pswdConfirm = document.getElementById("pswdConfirm");
@@ -123,9 +125,9 @@
         message.style.display = "none";
     }
 
-    var signUpCallback = function() {
-        window.location.href = "http://localhost:3000/signup"
-    }
+    // var signUpCallback = function() {
+    //     window.location.href = "http://localhost:3000/signup"
+    // }
 
     // POST call to check if record exists when user logs in
     var submitCallback = function (event) {
@@ -138,22 +140,27 @@
         }
         else {
             let data = {
+                'firstName': firstName.value,
+                'familyName': familyName.value,
                 'username': username.value,
                 'password': pswdInput.value
             };
-            ajax('http://localhost:3000/check', 'POST', JSON.stringify(data)).then(function (response) {
-                console.log("POST call to /check successful.", response);
+            ajax('http://localhost:3000/create', 'POST', JSON.stringify(data)).then(function (response) {
+                console.log("POST call to /create status".concat(': ', response));
                 
-                if (response === "Success") {
-                    let redirectUrl = "http://localhost:3000/profile?username=".concat('', data.username);
-                    window.location.replace(redirectUrl);
-                }
-                else {
-                    alert(response);
+                if (response !== null) {
+                    if (response === "username exists") {
+                        alert("Username entered already exists. Please choose another username.");
+                    }
+                    else {
+                        let redirectUrl = "http://localhost:3000/profile".concat('/', response.replace(/\"/g, ""));
+                        window.location.replace(redirectUrl);
+                    }
                 }
             }, function (error) {
-                console.log("POST call to /check failed!", error);
+                // console.log("POST call to /create failed!", error);
                 alert("Failed to log in! :(");
+                next(error);
             });
         }
     }
@@ -164,7 +171,7 @@
         abstractTag.addEvent(pswdInput, 'focus', focusCallback);
         abstractTag.addEvent(pswdInput, 'blur', blurCallback);
         abstractTag.addEvent(submit, 'click', submitCallback);
-        abstractTag.addEvent(signUp, 'click', signUpCallback);
+        // abstractTag.addEvent(signUp, 'click', signUpCallback);
     }
 
     abstractTag = new AbstractTag();

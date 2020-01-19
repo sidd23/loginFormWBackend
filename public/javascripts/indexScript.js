@@ -1,9 +1,7 @@
-(function () {
-    let abstractTag;
-    let username = document.getElementById("usrname");
-    let pswdInput = document.getElementById("pswd");
-    let submit = document.getElementById("submitForm");
-    let signUp = document.getElementById("signUp");
+(function(){
+    var rickRoll = document.getElementById("rickRoll");
+    var signUp = document.getElementById("signUp");
+    var login = document.getElementById("login");
 
     class AbstractTag {
         addClass(tag, className) {
@@ -17,61 +15,23 @@
         }
     }
 
-    function ajax (url, method, data) {
-        return new Promise(function(resolve, reject) {
-            let req = new XMLHttpRequest();
-            req.open(method, url, true);
-            req.responseType = 'text';
-            req.setRequestHeader("Content-Type", "application/json");
-            req.onreadystatechange = function() {
-                if (req.readyState === XMLHttpRequest.DONE) {
-                    if (req.status === 200) {
-                        resolve(req.responseText);
-                    } else {
-                        reject(req.statusText);
-                    }
-                }
-            };
-            
-            req.onerror = function() {
-                reject(Error("Network Error"));
-            }
-
-            req.send(data);
-        });
-    }
+    var rickRollCallback = function() {
+        window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+    };
 
     var signUpCallback = function() {
-        window.location.replace("http://localhost:3000/signup");
-    }
+        window.location.href = "http://localhost:3000/signup";
+    };
 
-    // POST call to check if record exists when user logs in
-    var submitCallback = function(event) {
-        event.preventDefault();
-        let data = {
-            'username': username.value,
-            'password': pswdInput.value
-        };
-        ajax('http://localhost:3000/check', 'POST', JSON.stringify(data)).then(function(response) {
-            console.log("POST call to /check successful.", response);
-                
-                if (response === "Success") {
-                    let redirectUrl = "http://localhost:3000/profile?username=".concat('', data.username);
-                    window.location.replace(redirectUrl);
-                }
-                else {
-                    alert(response);
-                }
-        }, function(error) {
-            console.log("POST call to /check failed!", error);
-            alert("Failed to log in! :(");
-        });
-    }
+    var loginCallback = function() {
+        window.location.href = "http://localhost:3000/login"
+    };
 
     // Add required event listeners
     function eventListeners() {
-        abstractTag.addEvent(submit, 'click', submitCallback);
+        abstractTag.addEvent(rickRoll, 'click', rickRollCallback);
         abstractTag.addEvent(signUp, 'click', signUpCallback);
+        abstractTag.addEvent(login, 'click', loginCallback);
     }
 
     abstractTag = new AbstractTag();
