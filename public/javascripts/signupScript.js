@@ -125,10 +125,6 @@
         message.style.display = "none";
     }
 
-    // var signUpCallback = function() {
-    //     window.location.href = "http://localhost:3000/signup"
-    // }
-
     // POST call to check if record exists when user logs in
     var submitCallback = function (event) {
         event.preventDefault();
@@ -158,7 +154,6 @@
                     }
                 }
             }, function (error) {
-                // console.log("POST call to /create failed!", error);
                 alert("Failed to log in! :(");
                 next(error);
             });
@@ -171,7 +166,6 @@
         abstractTag.addEvent(pswdInput, 'focus', focusCallback);
         abstractTag.addEvent(pswdInput, 'blur', blurCallback);
         abstractTag.addEvent(submit, 'click', submitCallback);
-        // abstractTag.addEvent(signUp, 'click', signUpCallback);
     }
 
     abstractTag = new AbstractTag();

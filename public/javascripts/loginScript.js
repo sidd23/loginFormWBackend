@@ -45,7 +45,6 @@
         window.location.replace("http://localhost:3000/signup");
     }
 
-    // POST call to check if record exists when user logs in
     var submitCallback = function(event) {
         event.preventDefault();
         let data = {
